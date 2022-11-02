@@ -1,6 +1,7 @@
 //UC1 Lets create a simple Linked List of 56, 30 and 70
 //UC2 Ability to create Linked List by adding 30 and 56 to 70
 //UC3 Ability to create Linked List by appending 30 and 70 to 56
+//UC4 Ability to insert 30 between 56 and 70
 package com.linkedlist;
 
 public class LinkedList {
@@ -26,6 +27,27 @@ public class LinkedList {
         }
     tail=newNode;
     }
+
+    public void insertAfterNode(int x) {
+
+        // Considering LinkedList is Sorted
+        Node newNode = new Node(x);
+
+        Node current = head;
+
+        while (current != null) {
+
+            if(!(current.data == 56)) {
+                current = current.next;
+            }
+            else if(current.data==56)
+                break;
+
+        }
+        Node temp=current.next;
+        newNode.next = temp;
+        current.next = newNode;
+    }
     public void display() {
         Node current = head;
         System.out.println("Nodes of linked list ");
@@ -38,8 +60,9 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addNode(56);
-        linkedList.addNode(30);
         linkedList.addNode(70);
+        linkedList.display();
+        linkedList.insertAfterNode(30);
         linkedList.display();
     }
 }
