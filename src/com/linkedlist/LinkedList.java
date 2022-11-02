@@ -4,6 +4,7 @@
 //UC4 Ability to insert 30 between 56 and 70
 //UC5 Ability to delete the first element in the LinkedList of sequence 56->30->70
 //UC6 Ability to delete the last element in the LinkedList of sequence 56->30->70
+//UC7 Ability to search LinkedList to find Node with value 30
 package com.linkedlist;
 public class LinkedList {
     static class Node {
@@ -31,47 +32,31 @@ public class LinkedList {
         tail = newNode;
     }
 
-    public void insertAfterNode(int x) {
 
-        // Considering LinkedList is Sorted
-        Node newNode = new Node(x);
-
+    public void searchElement(int data) {
         Node current = head;
-
-        while (current != null) {
-
-            if (!(current.data == 56)) {
-                current = current.next;
-            } else if (current.data == 56)
-                break;
-
-        }
-        Node temp = current.next;
-        newNode.next = temp;
-        current.next = newNode;
-    }
-
-
-    public void deleteLastElement() {
-
+        int i = 1;
+        boolean flag = false;
         if(head == null) {
             System.out.println("List is empty");
-            return;
         }
         else {
-            if(head != tail ) {
-                Node current = head;
-                while(current.next != tail) {
-                    current = current.next;
+            while(current != null) {
+                if(current.data == data) {
+                    flag = true;
+                    break;
                 }
-                tail = current;
-                tail.next = null;
-            }
-            else {
-                head = tail = null;
+                i++;
+                current = current.next;
             }
         }
-    }
+        if(flag)
+            System.out.println("Element is present at "+i+ " position");
+        else
+            System.out.println("Element is not present ");
+
+}
+
 
     public void display() {
         Node current = head;
@@ -86,13 +71,11 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addNode(56);
+        linkedList.addNode(30);
         linkedList.addNode(70);
         linkedList.display();
-        linkedList.insertAfterNode(30);
-        linkedList.display();
-        linkedList.deleteLastElement();
-        System.out.println("After deleted last element ");
-        linkedList.display();
+        linkedList.searchElement(30);
+
     }
 }
 
