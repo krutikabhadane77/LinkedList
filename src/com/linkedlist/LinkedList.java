@@ -6,6 +6,7 @@
 //UC6 Ability to delete the last element in the LinkedList of sequence 56->30->70
 //UC7 Ability to search LinkedList to find Node with value 30
 //UC8 Ability to insert 40 after 30 to the Linked List sequence of 56->30->70
+//UC9 Ability to delete 40 from the Linked List sequence of 56->30->40->70 and show the size of LinkedList is 3
 package com.linkedlist;
 public class LinkedList {
     static class Node {
@@ -87,6 +88,33 @@ public class LinkedList {
         }
     }
 
+    public void deletePosition(int position) {
+        Node temp = head;
+        Node prevNode = null;
+
+        if(position < 1 || position > position){
+            System.out.println("Invalid\n");
+            return;
+        }
+        int size = 4;
+        if(position == 1){
+            head = head.next;
+            System.out.println("Deleted: " + temp.data);
+            size--;
+            return;
+        }
+
+       while (--position > 0)
+        {
+            prevNode = temp;
+            temp = temp.next;
+        }
+        prevNode.next = temp.next;
+        System.out.println("Deleted: " + temp.data);
+        size--;
+        System.out.println("size of linked list is "+size);
+    }
+
 
     public void display() {
         Node current = head;
@@ -108,7 +136,9 @@ public class LinkedList {
         linkedList.insertAtSpecificPosition(40,3);
         System.out.println("After adding new element ");
         linkedList.display();
-
+        linkedList.deletePosition(3);
+        System.out.println("After deleting specific position ");
+        linkedList.display();
     }
 }
 
