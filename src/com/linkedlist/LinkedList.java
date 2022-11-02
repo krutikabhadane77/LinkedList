@@ -2,30 +2,32 @@
 //UC2 Ability to create Linked List by adding 30 and 56 to 70
 //UC3 Ability to create Linked List by appending 30 and 70 to 56
 //UC4 Ability to insert 30 between 56 and 70
+//UC5 Ability to delete the first element in the LinkedList of sequence 56->30->70
 package com.linkedlist;
-
 public class LinkedList {
-    static class Node{
+    static class Node {
         int data;
         Node next;
+
         public Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
+
     public Node head = null;
     public Node tail = null;
+
     public void addNode(int data) {
         Node newNode = new Node(data);
-        if(head == null) {
+        if (head == null) {
             head = newNode;
             tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.next = null;
         }
-        else {
-            tail.next=newNode;
-            newNode.next=null;
-        }
-    tail=newNode;
+        tail = newNode;
     }
 
     public void insertAfterNode(int x) {
@@ -37,26 +39,42 @@ public class LinkedList {
 
         while (current != null) {
 
-            if(!(current.data == 56)) {
+            if (!(current.data == 56)) {
                 current = current.next;
-            }
-            else if(current.data==56)
+            } else if (current.data == 56)
                 break;
 
         }
-        Node temp=current.next;
+        Node temp = current.next;
         newNode.next = temp;
         current.next = newNode;
     }
+
+    public void pop() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        else {
+            if(head != tail) {
+                head = head.next;
+            }
+            else {
+                head = tail = null;
+            }
+        }
+    }
+
     public void display() {
         Node current = head;
         System.out.println("Nodes of linked list ");
-        while(current != null) {
+        while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
         }
 
     }
+
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addNode(56);
@@ -64,5 +82,9 @@ public class LinkedList {
         linkedList.display();
         linkedList.insertAfterNode(30);
         linkedList.display();
+        linkedList.pop();
+        System.out.println("After deleted ");
+        linkedList.display();
     }
 }
+
