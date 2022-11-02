@@ -7,6 +7,7 @@
 //UC7 Ability to search LinkedList to find Node with value 30
 //UC8 Ability to insert 40 after 30 to the Linked List sequence of 56->30->70
 //UC9 Ability to delete 40 from the Linked List sequence of 56->30->40->70 and show the size of LinkedList is 3
+//UC10 Ability to create Ordered Linked List in ascending order
 package com.linkedlist;
 public class LinkedList {
     static class Node {
@@ -88,34 +89,29 @@ public class LinkedList {
         }
     }
 
-    public void deletePosition(int position) {
-        Node temp = head;
-        Node prevNode = null;
+    public void sortInAscending() {
+        Node current = head, index = null;
+        int temp;
 
-        if(position < 1 || position > position){
-            System.out.println("Invalid\n");
+        if(head == null) {
             return;
         }
-        int size = 4;
-        if(position == 1){
-            head = head.next;
-            System.out.println("Deleted: " + temp.data);
-            size--;
-            return;
-        }
+        else {
+            while(current != null) {
+                index = current.next;
 
-       while (--position > 0)
-        {
-            prevNode = temp;
-            temp = temp.next;
+                while(index != null) {
+                    if(current.data > index.data) {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+                current = current.next;
+            }
         }
-        prevNode.next = temp.next;
-        System.out.println("Deleted: " + temp.data);
-        size--;
-        System.out.println("size of linked list is "+size);
     }
-
-
     public void display() {
         Node current = head;
         System.out.println("Nodes of linked list ");
@@ -136,8 +132,8 @@ public class LinkedList {
         linkedList.insertAtSpecificPosition(40,3);
         System.out.println("After adding new element ");
         linkedList.display();
-        linkedList.deletePosition(3);
-        System.out.println("After deleting specific position ");
+        linkedList.sortInAscending();
+        System.out.println("Element sorted in ascending order ");
         linkedList.display();
     }
 }
