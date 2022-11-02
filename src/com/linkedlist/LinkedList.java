@@ -3,6 +3,7 @@
 //UC3 Ability to create Linked List by appending 30 and 70 to 56
 //UC4 Ability to insert 30 between 56 and 70
 //UC5 Ability to delete the first element in the LinkedList of sequence 56->30->70
+//UC6 Ability to delete the last element in the LinkedList of sequence 56->30->70
 package com.linkedlist;
 public class LinkedList {
     static class Node {
@@ -50,14 +51,21 @@ public class LinkedList {
         current.next = newNode;
     }
 
-    public void pop() {
+
+    public void deleteLastElement() {
+
         if(head == null) {
             System.out.println("List is empty");
             return;
         }
         else {
-            if(head != tail) {
-                head = head.next;
+            if(head != tail ) {
+                Node current = head;
+                while(current.next != tail) {
+                    current = current.next;
+                }
+                tail = current;
+                tail.next = null;
             }
             else {
                 head = tail = null;
@@ -82,8 +90,8 @@ public class LinkedList {
         linkedList.display();
         linkedList.insertAfterNode(30);
         linkedList.display();
-        linkedList.pop();
-        System.out.println("After deleted ");
+        linkedList.deleteLastElement();
+        System.out.println("After deleted last element ");
         linkedList.display();
     }
 }
