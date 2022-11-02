@@ -1,5 +1,6 @@
 //UC1 Lets create a simple Linked List of 56, 30 and 70
 //UC2 Ability to create Linked List by adding 30 and 56 to 70
+//UC3 Ability to create Linked List by appending 30 and 70 to 56
 package com.linkedlist;
 
 public class LinkedList {
@@ -20,11 +21,10 @@ public class LinkedList {
             tail = newNode;
         }
         else {
-            newNode.next=head;
-            head=newNode;
-            tail.next = null;
+            tail.next=newNode;
+            newNode.next=null;
         }
-
+    tail=newNode;
     }
     public void display() {
         Node current = head;
@@ -37,9 +37,9 @@ public class LinkedList {
     }
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        linkedList.addNode(70);
-        linkedList.addNode(30);
         linkedList.addNode(56);
+        linkedList.addNode(30);
+        linkedList.addNode(70);
         linkedList.display();
     }
 }
